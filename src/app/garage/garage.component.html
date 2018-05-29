@@ -24,11 +24,11 @@
             </td>
             <td>{{ car.parkDate | date:'L/dd/yyyy, h:mm a'}}</td>
             <td>
-                <button class="btn btn-primary" *ngIf="!allowEdit[i]" (click)="editThisCar(i)">Edit</button>
-                <button class="btn btn-primary" *ngIf="allowEdit[i]" (click)="saveCar(i, car)">Save</button>
+                <span *ngIf="!allowEdit[i]"><button class="btn btn-primary" *ngIf="!allowEdit[i]" (click)="editThisCar(i)">Edit</button></span>
+                <span *ngIf="allowEdit[i]"><button class="btn btn-primary" *ngIf="allowEdit[i]" (click)="saveCar(i, car)">Save</button></span>
             </td>
             <td>
-                <button class="btn btn-secondary" *ngIf="!allowEdit[i]" (click)="removeThisCar(car)">Remove</button>
+                <span *ngIf="!allowEdit[i]"><button class="btn btn-secondary" *ngIf="!allowEdit[i]" (click)="removeThisCar(car)">Remove</button></span>
             </td>
         </tr>
 
