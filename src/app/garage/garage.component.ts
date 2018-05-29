@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { LatestComponent } from "./latest/latest.component";
+import { LatestComponent } from "../latest/latest.component";
 import { CarObject } from "../car-object.model";
 import { GarageApi } from "../garage/garage-api.service";
 
@@ -23,7 +23,7 @@ export class GarageComponent implements OnInit {
 
 	async removeCar(car: CarObject) {
 		this.theData = await this.garageApi.removeCar(
-			"https://mkenney-car-garage.herokuapp.com/car/" + car.id,
+			`https://mkenney-car-garage.herokuapp.com/car/${car.id}`,
 			car
 		);
 		this.sendUpdate();

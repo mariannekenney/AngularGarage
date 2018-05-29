@@ -9,8 +9,8 @@ import { CarObject } from "../car-object.model";
 	styleUrls: ["./latest.component.css"]
 })
 export class LatestComponent implements OnInit {
-	theData: CarObject = new CarObject();
-	license: string;
+	theData: any;
+	license: String;
 
 	constructor(private http: HttpClient) {}
 
