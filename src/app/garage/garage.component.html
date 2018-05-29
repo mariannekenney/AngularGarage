@@ -10,19 +10,27 @@
             <th scope="col">Remove</th>
         </tr>
         <tr *ngFor="let car of cars; let i = index">
-            <td *ngIf="allowEdit[i]"><input type="text" class="form-control" name="license" aria-label="Small" placeholder="Enter the car's license plate number" [(ngModel)]="car.license" required></td>
-            <td *ngIf="allowEdit[i]"><input type="text" class="form-control" name="make" aria-label="Small" placeholder="Enter the car's make" [(ngModel)]="car.make" required></td>
-            <td *ngIf="allowEdit[i]"><input type="text" class="form-control" name="model" aria-label="Small" placeholder="Enter the car's model" [(ngModel)]="car.model" required></td>
-
-            <td *ngIf="!allowEdit[i]">{{ car.license }}</td>
-            <td *ngIf="!allowEdit[i]">{{ car.make }}</td>
-            <td *ngIf="!allowEdit[i]">{{ car.model }}</td>
-
+            <td>
+                <span *ngIf="!allowEdit[i]">{{ car.license }}</span>
+                <span *ngIf="allowEdit[i]"><input type="text" class="form-control" name="license" aria-label="Small" placeholder="Enter the car's license plate number" [(ngModel)]="car.license" required></span>
+            </td>
+            <td>
+                <span *ngIf="!allowEdit[i]">{{ car.make }}</span>
+                <span *ngIf="allowEdit[i]"><input type="text" class="form-control" name="make" aria-label="Small" placeholder="Enter the car's make" [(ngModel)]="car.make" required></span>
+            </td>
+            <td>
+                <span *ngIf="!allowEdit[i]">{{ car.model }}</span>
+                <span *ngIf="allowEdit[i]"><input type="text" class="form-control" name="model" aria-label="Small" placeholder="Enter the car's model" [(ngModel)]="car.model" required></span>
+            </td>
             <td>{{ car.parkDate | date:'L/dd/yyyy, h:mm a'}}</td>
-
-            <td *ngIf="allowEdit[i]"><button class="btn btn-primary" type="button" (click)="saveCar(i, car)">Save</button></td>
-            <td><button class="btn btn-primary" *ngIf="!allowEdit[i]" type="submit" (click)="editCar(i)">Edit</button></td>
-            <td><button class="btn btn-secondary" *ngIf="!allowEdit[i]" type="submit" (click)="removeCar(car)">Remove</button></td>
+            <td>
+                <button class="btn btn-primary" *ngIf="!allowEdit[i]" (click)="editThisCar(i)">Edit</button>
+                <button class="btn btn-primary" *ngIf="allowEdit[i]" (click)="saveCar(i, car)">Save</button>
+            </td>
+            <td>
+                <button class="btn btn-secondary" *ngIf="!allowEdit[i]" (click)="removeThisCar(car)">Remove</button>
+            </td>
         </tr>
+
     </table>
 <html>

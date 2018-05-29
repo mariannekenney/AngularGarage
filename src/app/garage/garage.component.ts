@@ -30,27 +30,28 @@ export class GarageComponent implements OnInit {
 		for (let i: number = 0; i < this.cars.length; i++) {
 			this.allowEdit[i] = false;
 		}
-		console.log(this.allowEdit);
 	}
 
-	async removeCar(car: CarObject) {
+	async removeThisCar(car: CarObject) {
 		this.cars = await this.garageApi.removeCar(
 			`https://mkenney-car-garage.herokuapp.com/car/${car.id}`
 		);
 		this.updateEvent.emit();
 	}
 
-	editCar(i: number) {
+	editThisCar(i: number) {
 		this.allowEdit[i] = true;
 		this.updateEvent.emit();
 	}
 
 	async saveCar(i, car: CarObject) {
-		this.allowEdit[i] = false;
-		this.cars = await this.garageApi.editCar(
-			`https://mkenney-car-garage.herokuapp.com/car/${car.id}`,
-			car
-		);
-		this.updateEvent.emit();
+		if (car.license && car.make && car.model) {
+			this.allowEdit[i] = false;
+			this.cars = await this.garageApi.editCar(
+				`https://mkenney-car-garage.herokuapp.com/car/${car.id}`,
+				car
+			);
+			this.updateEvent.emit();
+		}
 	}
 }
