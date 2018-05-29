@@ -1,3 +1,5 @@
-<app-latest [license]="latestLicense"></app-latest>
-<app-garage [cars]="cars" (updateEvent)="update()"></app-garage>
-<app-add (addEvent)="update()"></app-add>
+<div class="container-fluid">
+	<app-latest [license]="latestLicense"></app-latest>
+	<app-garage *ngIf="cars" [cars]="cars" (updateEvent)="update()"></app-garage>
+	<app-add (addEvent)="update()"></app-add>
+</div>

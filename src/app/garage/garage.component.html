@@ -1,16 +1,28 @@
-<h2>All of the Cars:</h2>
-<table>
-    <tr>
-        <th>License Plate Number</th>
-        <th>Make</th>
-        <th>Model</th>
-        <th>Park Date</th>
-    </tr>
-    <tr *ngFor="let car of cars">
-        <td>{{ car.license }}</td>
-        <td>{{ car.make }}</td>
-        <td>{{ car.model }}</td>
-        <td>{{ car.parkDate }}</td>
-        <td><button type="submit" (click)="removeCar(car)">Remove</button></td>
-    </tr>
-</table>
+<html>
+    <h2>Cars in the Garage:</h2>
+    <table class="table">
+        <tr>
+            <th scope="col">License Plate Number</th>
+            <th scope="col">Make</th>
+            <th scope="col">Model</th>
+            <th scope="col">Park Date</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Remove</th>
+        </tr>
+        <tr *ngFor="let car of cars; let i = index">
+            <td *ngIf="allowEdit[i]"><input type="text" class="form-control" name="license" aria-label="Small" placeholder="Enter the car's license plate number" [(ngModel)]="car.license" required></td>
+            <td *ngIf="allowEdit[i]"><input type="text" class="form-control" name="make" aria-label="Small" placeholder="Enter the car's make" [(ngModel)]="car.make" required></td>
+            <td *ngIf="allowEdit[i]"><input type="text" class="form-control" name="model" aria-label="Small" placeholder="Enter the car's model" [(ngModel)]="car.model" required></td>
+
+            <td *ngIf="!allowEdit[i]">{{ car.license }}</td>
+            <td *ngIf="!allowEdit[i]">{{ car.make }}</td>
+            <td *ngIf="!allowEdit[i]">{{ car.model }}</td>
+
+            <td>{{ car.parkDate | date:'L/dd/yyyy, h:mm a'}}</td>
+
+            <td *ngIf="allowEdit[i]"><button class="btn btn-primary" type="button" (click)="saveCar(i, car)">Save</button></td>
+            <td><button class="btn btn-primary" *ngIf="!allowEdit[i]" type="submit" (click)="editCar(i)">Edit</button></td>
+            <td><button class="btn btn-secondary" *ngIf="!allowEdit[i]" type="submit" (click)="removeCar(car)">Remove</button></td>
+        </tr>
+    </table>
+<html>

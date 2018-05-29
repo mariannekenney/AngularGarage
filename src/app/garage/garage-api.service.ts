@@ -14,13 +14,17 @@ export class GarageApi {
 		return response;
 	}
 
+	async editCar(url: string, car: CarObject): Promise<any> {
+		const response = await this.http.put(url, car).toPromise();
+		return response;
+	}
+
 	async removeCar(url: string): Promise<any> {
 		const response = await this.http.delete(url).toPromise();
 		return response;
 	}
 
 	async addCar(car: CarObject): Promise<any> {
-		console.log(car);
 		const response = await this.http
 			.post("https://mkenney-car-garage.herokuapp.com/car", car)
 			.toPromise();
