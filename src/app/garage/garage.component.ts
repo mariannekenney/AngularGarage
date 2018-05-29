@@ -23,14 +23,14 @@ export class GarageComponent implements OnInit {
 
 	async removeCar(car: CarObject) {
 		this.theData = await this.garageApi.removeCar(
-			`https://mkenney-car-garage.herokuapp.com/car/${car.id}`,
-			car
+			`https://mkenney-car-garage.herokuapp.com/car/${car.id}`
 		);
-		this.sendUpdate();
+		this.updateData();
 	}
 
 	async updateData() {
 		this.theData = await this.garageApi.getCars();
+		this.sendUpdate();
 	}
 
 	sendUpdate() {
