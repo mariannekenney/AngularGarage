@@ -1,0 +1,14 @@
+<h2>Add a Car:</h2>
+<form #myForm="ngForm" (ngSubmit)="onSubmit(); myForm.reset()">
+
+	<label>Licence Plate Number</label><br>
+	<input type="text" name="license" [(ngModel)]="car.license" required><br><br>
+
+	<label>Make</label><br>
+	<input type="text" name="make" [(ngModel)]="car.make" required><br><br>
+
+	<label>Model</label><br>
+	<input type="text" name="model" [(ngModel)]="car.model" required><br><br>
+
+	<button type="submit" [disabled]="!myForm.valid">Submit</button> 
+</form>
