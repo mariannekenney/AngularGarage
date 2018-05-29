@@ -1,7 +1,12 @@
-import { Component, OnInit, Output, EventEmitter, Inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import {
+	Component,
+	OnInit,
+	Output,
+	Input,
+	EventEmitter,
+	Inject
+} from "@angular/core";
 
-import { LatestComponent } from "../latest/latest.component";
 import { CarObject } from "../car-object.model";
 import { GarageApi } from "../garage/garage-api.service";
 
@@ -11,29 +16,17 @@ import { GarageApi } from "../garage/garage-api.service";
 	styleUrls: ["./garage.component.css"]
 })
 export class GarageComponent implements OnInit {
-	theData: CarObject[];
-
+	@Input() cars: CarObject[];
 	@Output() updateEvent = new EventEmitter();
 
-	constructor(private http: HttpClient, private garageApi: GarageApi) {}
+	constructor(private garageApi: GarageApi) {}
 
-	ngOnInit() {
-		this.updateData();
-	}
+	ngOnInit() {}
 
 	async removeCar(car: CarObject) {
-		this.theData = await this.garageApi.removeCar(
+		this.cars = await this.garageApi.removeCar(
 			`https://mkenney-car-garage.herokuapp.com/car/${car.id}`
 		);
-		this.updateData();
-	}
-
-	async updateData() {
-		this.theData = await this.garageApi.getCars();
-		this.sendUpdate();
-	}
-
-	sendUpdate() {
 		this.updateEvent.emit();
 	}
 }

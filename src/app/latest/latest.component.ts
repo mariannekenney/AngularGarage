@@ -1,5 +1,4 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit, Input } from "@angular/core";
 
 import { CarObject } from "../car-object.model";
 import { GarageApi } from "../garage/garage-api.service";
@@ -10,17 +9,9 @@ import { GarageApi } from "../garage/garage-api.service";
 	styleUrls: ["./latest.component.css"]
 })
 export class LatestComponent implements OnInit {
-	theData: any;
-	license: String;
+	@Input() license: String;
 
-	constructor(private http: HttpClient, private garageApi: GarageApi) {}
+	constructor(private garageApi: GarageApi) {}
 
-	ngOnInit() {
-		this.updateLatest();
-	}
-
-	async updateLatest() {
-		this.theData = await this.garageApi.getLatest();
-		this.license = this.theData.license;
-	}
+	ngOnInit() {}
 }

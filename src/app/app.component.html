@@ -1,1 +1,3 @@
-<app-latest></app-latest>
+<app-latest [license]="latestLicense"></app-latest>
+<app-garage [cars]="cars" (updateEvent)="update()"></app-garage>
+<app-add (addEvent)="update()"></app-add>

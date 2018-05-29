@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 
 import { CarObject } from "../car-object.model";
 import { GarageApi } from "../garage/garage-api.service";
@@ -15,16 +14,12 @@ export class AddComponent implements OnInit {
 
 	@Output() addEvent = new EventEmitter();
 
-	constructor(private http: HttpClient, private garageApi: GarageApi) {}
+	constructor(private garageApi: GarageApi) {}
+
+	ngOnInit() {}
 
 	async onSubmit() {
 		const response = await this.garageApi.addCar(this.car);
-		this.sendAdd();
-	}
-
-	sendAdd() {
 		this.addEvent.emit();
 	}
-
-	ngOnInit(): void {}
 }

@@ -6,7 +6,7 @@
         <th>Model</th>
         <th>Park Date</th>
     </tr>
-    <tr *ngFor="let car of theData">
+    <tr *ngFor="let car of cars">
         <td>{{ car.license }}</td>
         <td>{{ car.make }}</td>
         <td>{{ car.model }}</td>
@@ -14,4 +14,3 @@
         <td><button type="submit" (click)="removeCar(car)">Remove</button></td>
     </tr>
 </table>
-<app-add (addEvent)="updateData()"></app-add>
